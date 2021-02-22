@@ -1,0 +1,23 @@
+{% extends 'layeout.html.twig' %}
+
+{% block title %}
+Votre profil
+{% endblock %}
+
+{% block main %}
+<h1>Mon Profil</h1> {{ user.username }}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+
+                {{ form_start(profilForm) }}
+                {{ form_widget(profilForm) }}
+                <button type="submit">Register</button>
+                <button><a href="{{ path('home') }}">Retour</a></button>
+                {{ form_end(profilForm) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

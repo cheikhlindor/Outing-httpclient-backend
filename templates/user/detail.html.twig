@@ -1,0 +1,16 @@
+{% extends 'layeout.html.twig' %}
+{% block title %}
+    modification profil
+{% endblock %}
+
+{% block main %}
+
+    <h1>{{ userdetail.username }}</h1>
+<h4>Prénom :{{ userdetail.prenom }}</h4>
+<h4>Nom :{{ userdetail.nom }}</h4>
+<h4>Téléphone :{{ userdetail.telephone }}</h4>
+<h4>Email :{{ userdetail.email }}</h4>
+<h4>Campus :{{ userdetail.campus.nom }}</h4><br>
+    <button><a href="{{ path('home') }}">Retour</a> </button>
+
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'layeout.html.twig' %}
+{% block title %} Vous êtes sur la page d'inscription{% endblock %}
+{% block main %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <h1>Page d'inscription</h1>
+                {{ form_start(registerform) }}
+                {{ form_widget(registerform) }}
+                <button type="submit">Register</button>
+                {{ form_end(registerform) }}
+            </div>
+        </div>
+    </div>
+
+  {% endblock %}

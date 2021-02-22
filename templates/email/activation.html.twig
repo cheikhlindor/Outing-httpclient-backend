@@ -1,0 +1,6 @@
+{% extends 'layeout.html.twig' %}
+{% block main %}
+<h1>activation de votre compte</h1>
+<p>Vueillez cliquez sur le lien pour activer votre compte</p>
+<p><a href="{{ absolute_url(path('activation', {'token': token})) }}">Activer votre compte</a></p>
+{% endblock %}

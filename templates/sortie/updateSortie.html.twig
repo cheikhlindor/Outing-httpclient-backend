@@ -1,0 +1,39 @@
+{% extends 'layeout.html.twig' %}
+{% block title %}
+   Modifier une sortie
+{% endblock %}
+{% block main %}
+    <h3>Modifier une sortie</h3>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+
+                {{ form_start(updateFrom) }}
+                {{ form_start(lieuForm) }}
+                {{ form_start(villeForm) }}
+                {{ form_widget(updateFrom) }}
+                {{ form_widget(villeForm) }}
+                {{ form_widget(lieuForm) }}
+
+                <button type="submit">Enregistrer</button>
+                <button><a href="{{ path('sortie_list') }}">Annuler</a></button>
+
+                {{ form_end(updateFrom) }}
+                {{ form_end(villeForm) }}
+                {{ form_end(lieuForm) }}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+{% block javascripts %}
+    <script>
+        $(document).ready(function() {
+            // you may need to change this code if you are not using Bootstrap Datepicker
+            $('.js-datepicker').datepicker({
+                format: 'yyyy-mm-dd'
+            });
+        });
+    </script>
+{% endblock javascripts %}

@@ -1,0 +1,26 @@
+{% extends 'layeout.html.twig' %}
+
+{% block title %}
+Ajouty ville
+{% endblock %}
+
+{% block main %}
+<h4>Ajout ville</h4>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6">
+
+
+            {{ form_start(villeForm) }}
+            {{ form_widget(villeForm) }}
+<br>
+            <button type="submit">Enregistrer</button>
+
+            <button><a href="{{ path('admin_ville') }}">Annuler</a></button>
+            {{ form_end(villeForm) }}
+
+        </div>
+    </div>
+
+{% endblock %}
+

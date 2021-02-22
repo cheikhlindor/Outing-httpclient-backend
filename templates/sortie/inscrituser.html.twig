@@ -1,0 +1,32 @@
+{% extends 'layeout.html.twig' %}
+
+{% block title %}
+Inscription à une sortie | {{ parent() }}
+{% endblock %}
+
+
+{% block main %}
+    <h3>Inscription à une sortie </h3>
+    <div class="row">
+        <div class="col-md-4 mr-auto">
+            <p> <span>Nom de la sortie :</span>{{ sortie.nom }}</p>
+            <p> <span>Date et heure de la sortie :</span>{{ sortie.dateHeureDebut | date("Y-m-d H:i:s") }}</p>
+            <p> <span>Date limite d'inscription :</span>{{ sortie.dateLimiteInscription |date("Y-m-d")}}</p>
+            <p> <span>Nombre de places :</span>{{ sortie.nbInscriptionMax }}</p>
+            <p> <span>Duree :</span>{{ sortie.duree }}</p>
+            <p> <span>Description et Infos :</span>{{ sortie.infoSortie }}</p>
+        </div>
+        <div class="col-md-4">
+            <form method="post">
+
+                <label for="pseudo" class="form-label">Pseudo:</label>
+                <input type="text" name="pseudo" id="pseudo" class="form-control" value="{{ user.username }}"><br>
+                <button type="submit" class="btn btn-primary">Valider votre Inscription</button>
+                <button><a href="{{ path('sortie_list') }}">Annuler</a></button>
+            </form>
+
+        </div>
+
+    </div>
+{% endblock %}
+

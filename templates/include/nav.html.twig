@@ -1,0 +1,21 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{{ path('sortie_list') }}">Accueil</a>
+
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+            {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+            {% if is_granted('ROLE_ADMIN') %}
+            <a class="navbar-brand" href="{{ path('admin_ville') }}">Villes</a>
+            <a class="navbar-brand" href="{{ path('admin_campus_liste') }}">Campus</a>
+            {% endif %}
+            <a class="navbar-brand" href="{{path('user_profil')}}">Mon Profil</a>
+            <a href="{{path('logout')}}">Deconnecter</a>
+
+
+            {% else %}
+            <a class="navbar-brand" href="{{ path('user_register') }}">Inscription</a>
+            <a class="navbar-brand" href="{{ path('login') }}">Connexion</a>
+            {% endif %}
+    </div>
+        </div>
+</nav>

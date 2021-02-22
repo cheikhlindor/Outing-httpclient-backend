@@ -1,0 +1,40 @@
+{% extends 'layeout.html.twig' %}
+{% block title %}
+les villes{% endblock %}
+{% block main %}
+<h3>Gérer les villes</h3>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 mr-auto">
+                {% include 'admin/search.html.twig' with {form: form}  only %}
+
+            </div>
+        </div>
+    </div>
+    <br>
+
+
+    <table class="table">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">Ville</th>
+            <th scope="col">Code Postal</th>
+            <th scope="col">Action</th>
+        </tr>
+        </thead>
+
+    <tbody>
+    {% for ville in villes %}
+    <tr>
+
+    <td>{{ville.nom }}</td>
+
+    <td>{{ ville.codePostal }}</td>
+    <td><a href="{{ path('ville_update', {'id': ville.id}) }}">modifier</a>-<a href="{{ path('ville_delete', {'id': ville.id}) }}">supprimer</a></td>
+    </tr>
+    {% endfor %}
+    </tbody>
+    </table>
+
+    <a class="navbar-brand" href="{{ path('admin_ville_add') }}">Ajouter une ville</a>
+{% endblock %}

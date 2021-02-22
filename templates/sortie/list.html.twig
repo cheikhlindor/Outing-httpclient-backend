@@ -1,0 +1,95 @@
+{% extends 'layeout.html.twig' %}
+
+
+{% block main %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 mr-auto">
+                {% include 'sortie/search.html.twig' with {form: form}  only %}
+
+            </div>
+        </div>
+    </div>
+<br>
+
+
+    {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+
+    <h3>Accueil Sortie</h3>
+        <table class="table">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">Nom de la sortie</th>
+            <th scope="col">Date de la sortie</th>
+            <th scope="col">Cloture</th>
+            <th scope="col">Inscrits/places</th>
+            <th scope="col">Etat</th>
+            <th scope="col">Inscrit</th>
+            <th scope="col">Organisateur</th>
+            <th scope="col">Action</th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+{% for sortie in sorties %}
+   <tr>
+
+        <td>{{ sortie.nom }}</td>
+
+        <td>{{ sortie.dateHeureDebut |date("Y-m-d H:i:s") }}</td>
+        <td>{{ sortie.dateLimiteInscription |date("Y-m-d") }}</td>
+        <td>{{ sortie.users|length }}/{{ sortie.nbInscriptionMax }}</td>
+        <td>{{ sortie.etatsortie.libelle }}</td>
+        <td>{{ sortie.etat }}</td>
+        <td>{{ sortie.user.nom }}</td>
+        <td><a href="{{ path('sortie_detail', {'id': sortie.id})}}">Afficher</a></td>
+
+                    {% if  sortie.user.username == userRepository.username %}
+        <td><a href="{{ path('sortie_cancel', {'id': sortie.id})}}">Annuler</a></td>
+        <td><a href="{{ path('sortie_update', {'id': sortie.id})}}">modifier</a></td>
+                     {% else %}
+
+
+       {%if sortie.etatsortie.libelle == 'Ouverte' and sortie.user != app.user %}
+           {% if sortie.users|filter(v => v == app.user)|length and (sortie.etatsortie.libelle == 'Ouverte' or sortie.etatsortie.libelle == 'Clôturée') %}
+                         <td><a href="{{ path('desinscrire-regist', {'id': sortie.id})}}" id="desinscrire">Désinscrire</a></td>
+       {% elseif sortie.users|length < sortie.nbInscriptionMax and date('now') < sortie.dateLimiteInscription %}
+           <td><a href="{{ path('inscription-regist', {'id': sortie.id})}}">S'inscrire</a></td>
+                             {% endif %}
+                             {% endif %}
+                         {% endif %}
+    </tr>
+
+{% endfor %}
+        </tbody>
+        </table>
+        <a class="navbar-brand" href="{{path('sortie_creersortie')}}">Creer une sortie</a>
+
+    {% endif %}
+
+
+    <div>{{ knp_pagination_render(sorties) }}</div>
+
+{% endblock %}
+        {% block title %}Les sorties disponibles! | {{ parent() }}{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+ <script type="text/javascript">
+
+
+    var desinscrire = document.querySelector('#desinscrire');
+    desinscrire.addEventListener('click', supprimer(e));
+
+    function supprimer(e) {
+        var reponse = window.confirm("voulez vous vraiment vous desinscrire ?");
+        if (reponse === false) {
+            e.preventDefault();
+        } else {
+	fenetre = window.open("url", "_blank", "width=300, height=300");
+        }
+    }
+</script>
+
+{% endblock javascripts %}
+

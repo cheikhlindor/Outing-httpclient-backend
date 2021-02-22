@@ -1,0 +1,35 @@
+{% extends 'layeout.html.twig' %}
+
+{% block title %}
+Annuler une sortie
+{% endblock %}
+
+{% block main %}
+    <h3>Annuler la sortie</h3>
+    <div class="row">
+        <form method="post">
+        <div class="col-md-4 mr-auto">
+            <p> <span>Nom de la sortie :</span>{{ sortie.nom }}</p>
+            <p> <span>Date et heure de la sortie :</span>{{ sortie.dateHeureDebut | date("Y-m-d H:i:s") }}</p>
+            <p> <span>Campus :</span>{{ sortie.campus.nom}}</p>
+            <p> <span>Lieu :</span>{{ sortie.lieu.nom }}</p>
+            <p> <span>Rue :</span>{{ sortie.lieu.rue }}</p>
+            <p> <span>Code Postal :</span>{{ sortie.lieu.ville.codePostal}}</p>
+
+        </div>
+            <div>
+                <label><span>Motif :</span></label>
+                <textarea class="form-control" placeholder="Laisser votre motif " name="motif" id="motif"></textarea>
+
+            </div>
+            <br>
+            <button type="submit" class="btn btn-primary">Enregistrer</button>
+            <button class="btn btn-dark"><a href="{{ path('sortie_list') }}">Annuler</a></button>
+        </form>
+
+
+
+
+    </div>
+{% endblock %}
+

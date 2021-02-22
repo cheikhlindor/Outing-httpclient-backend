@@ -1,0 +1,10 @@
+{% extends 'layeout.html.twig' %}
+{% block title %} Accueil {% endblock %}
+{% block main %}
+<h1>Accueil Sortie</h1>
+    {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+
+        <a class="navbar-brand" href="{{path('sortie_creersortie')}}">Creer une sortie</a>
+
+    {% endif %}
+{% endblock %}

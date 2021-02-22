@@ -1,0 +1,59 @@
+{% extends 'layeout.html.twig' %}
+
+{% block title %}
+detail sortie
+{% endblock %}
+
+{% block main %}
+    <h2>Détail de la sortie</h2><br>
+
+    <div class="row">
+        <div class="col-md-4 mr-auto">
+            <p> <span>Nom de la sortie :</span>{{ sortie.nom }}</p>
+            <p> <span>Date et heure de la sortie :</span>{{ sortie.dateHeureDebut | date("Y-m-d H:i:s") }}</p>
+            <p> <span>Date limite d'inscription :</span>{{ sortie.dateLimiteInscription |date("Y-m-d")}}</p>
+            <p> <span>Nombre de places :</span>{{ sortie.nbInscriptionMax }}</p>
+            <p> <span>Duree :</span>{{ sortie.duree }}</p>
+            <p> <span>Description et Infos :</span>{{ sortie.infoSortie }}</p>
+        </div>
+        <div class="col-md-4">
+            <p> <span>Campus :</span>{{ sortie.campus.nom}}</p>
+            <p> <span>Lieu :</span>{{ sortie.lieu.nom }}</p>
+            <p> <span>Rue :</span>{{ sortie.lieu.rue }}</p>
+            <p> <span>Code Postal :</span>{{ sortie.lieu.ville.codePostal}}</p>
+            <p> <span>latitude :</span>{{ sortie.lieu.latitude }}</p>
+            <p> <span>Longitude :</span>{{ sortie.lieu.longitude }}</p>
+
+        </div>
+
+    </div>
+
+    <br>
+    <h3 id="div">Liste des participants inscrits :</h3><br>
+    <p>Organisateur : <em>{{ sortie.user.nom }}</em></p>
+
+
+
+<table class="table-bordered">
+    <thead>
+    <tr>
+        <th class="col-md-4 mr-auto">Pseudo</th>
+        <th class="col-md-8">Nom</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    {% for user in sortie.users %}
+    <tr>
+        <td>{{ user.username }}</td>
+        <td>{{ user.nom }}</td>
+
+    </tr>
+
+    {% endfor %}
+    </tbody>
+</table>
+    <br>
+    <button><a href="{{ path('sortie_list') }}">Retour</a></button>
+{% endblock %}
+

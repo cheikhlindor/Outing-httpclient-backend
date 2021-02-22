@@ -1,0 +1,25 @@
+{% extends 'layeout.html.twig' %}
+
+{% block title %}
+    Ajout Campus
+{% endblock %}
+
+{% block main %}
+    <h4>Ajout campus</h4>
+    <div class="container">
+    <div class="row">
+        <div class="col-sm-6">
+
+
+            {{ form_start(campusForm) }}
+            {{ form_widget(campusForm) }}
+            <br>
+            <button type="submit">Enregistrer</button>
+
+            <button><a href="{{ path('admin_campus_liste') }}">Annuler</a></button>
+            {{ form_end(campusForm) }}
+
+        </div>
+    </div>
+
+{% endblock %}
